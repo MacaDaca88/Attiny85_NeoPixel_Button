@@ -56,7 +56,7 @@ Small led threw 2.2k resistor represents POWER ON no mater the input voltage sta
 1x 2Way Switch 
 1x Led (Power Led Optional)
 1x NeoPixel Strip (Optional Led Strip Size)
-
+1x 350mAh (run time depending on brightness and colors will run for few hours no worries)
 
 ////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////   WIRING/PINOUT  /////////////////////////////////////////
