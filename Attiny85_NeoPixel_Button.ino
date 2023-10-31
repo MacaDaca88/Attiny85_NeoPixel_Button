@@ -10,12 +10,13 @@
 Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
 
-boolean oldState = HIGH;
+bool oldState = HIGH;
+
 int mode = 0;
 int sensorPin = A1;
 
 int sensorValue = 0;
-
+int button = 500;
 void setup() {
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   strip.begin();
@@ -24,11 +25,17 @@ void setup() {
 }
 
 void loop() {
-  boolean newState = digitalRead(BUTTON_PIN);
+  bool newState = digitalRead(BUTTON_PIN);
+  bool WhiteLight = digitalRead(BUTTON_PIN);
+
   sensorValue = analogRead(sensorPin);
 
   int brightness = map(sensorValue, 1024, 0, 0, 255);
   strip.setBrightness(brightness);
+
+  if ((BUTTON_PIN == HIGH) && (BUTTON_PIN >= button)) {
+    colorWipe(strip.Color(255, 255, 255), 50);  // Black
+  }
 
   if ((newState == LOW) && (oldState == HIGH)) {
     delay(20);
@@ -74,7 +81,6 @@ void colorWipe(uint32_t color, int wait) {
   for (int i = 0; i < strip.numPixels(); i++) {
     strip.setPixelColor(i, color);
     strip.show();
-    delay(wait);
   }
 }
 
